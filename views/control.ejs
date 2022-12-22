@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>لوحة التحكم</title>
+    <link rel="stylesheet" href="/stylesheets/control.css">
+    <link rel="icon" type="image/png" href="/emojey/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div id="loader">
+        <div id="loader-content"></div>
+    </div>
+    <div class="container">
+        <div class="left-side">
+            <div class="called c1">التسجيل</div>
+            <div class="called c2">الحالات</div>
+            <div class="called c3">الاعضاء</div>
+            <div class="called c4">الحظر</div>
+            <div class="called c5">الصلاحيات</div>
+            <div class="called c6">الفلتر</div>
+            <div class="called c7">الغرف</div>
+            <div class="called c8">الاختصارات</div>
+            <div class="called c9">الاشتراكات</div>
+            <div class="called c10">الرسائل</div>
+            <div class="called c11">ادارة الموقع</div>
+            <div class="called c12">النطاقات</div>
+            <div class="called c13">Bot</div>
+        </div>
+        <div class="right-side">
+            <div class="card1" style="display: none;">
+                <div class="search">
+                    <div class="decres"><i style="    position: relative;
+                        bottom: 4px;color: white;" class="fa fa-arrow-left  btn-primary"><span id="0">0</span></i></div>
+                    <div class="incres"><i style="    position: relative;bottom: 4px;
+                        color: white;" class="fa fa-arrow-right btn btn-primary"><span id="50">50</span></i></div>
+                    <input  type="search" name="" id="">
+                </div>
+                <div class="table-users">
+                    <table class="table-usersss">
+                        <tr>
+                            <th>الحالة</th>
+                            <th>العضو</th>
+                            <th>الزغرفة</th>
+                            <th>الآ بي</th>
+                            <th>الدولة</th>
+                            <th>الجهاز</th>
+                            <th>المصدر</th>
+                            <th>الدعوة</th>
+                            <th>وقت </th>
+                            <th></th>
+                        </tr>
+                        <div class="data-tr">
+                            <% for(var i=0 ; i < users.length ; i++){%>
+                                <tr>
+                                    <td>
+                                        <%= users[i].stats %>
+                                    </td>
+                                    <td>
+                                        <%= users[i].momber %>
+                                    </td>
+                                    <td>
+                                        <%= users[i].style %>
+                                    </td>
+                                    <td>
+                                        <%= users[i].ip %>
+                                    </td>
+                                    <td>
+                                        <%= users[i].national %>
+                                    </td>
+                                    <td>
+                                        <%= users[i].device %>
+                                    </td>
+                                    <td>
+                                        <%= users[i].source %>
+                                    </td>
+                                    <td>
+                                        <%= users[i].invation %>
+                                    </td>
+                                    <td style="width: 120px;">
+                                        <%= users[i].time %>
+                                    </td>
+                                    <td id="<%= users[i].user_id %>" class="togle clicktogel" id="serach"
+                                        style="background-color: rgba(0, 0, 0, 0.439);cursor: pointer;"><img
+                                            width="10px" src="/images/search-interface-symbol.png" alt="">
+                                    </td>
+                                    <td>
+                                    <div style="display: none;" id="<%= users[i].user_id %>"
+                                        class="ss<%= users[i].user_id %> options togle  select">
+                                        <button name="search0" value="<%= users[i].momber %>">بحث</button>
+                                        <button name="search1" value="<%= users[i].momber %>">بحث عميق 1 </button>
+                                        <button name="search1" value="<%= users[i].momber %>">بحث عميق 2</button>
+                                        <button name="search3" value="<%= users[i].ip %>">بحث عميق 3</button>
+                                        <button name="block" value="<%= users[i].ip %>"> حظر </button>
+                                        <button name="block" value="<%= users[i].ip %>">حظر عميق 1</button>
+                                    </div>
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </div>
+                    </table>
+                </div>
+            </div>
+            <div class="card2" style="display: none;">
+                <div class="search-card2">
+                    <div class="decres-card2"><i style="    position: relative;
+                        bottom: 4px;color: white;" class="fa fa-arrow-left  btn-primary"><span id="0">0</span></i></div>
+                    <div class="incres-card2"><i style="    position: relative;bottom: 4px;
+                        color: white;" class="fa fa-arrow-right btn btn-primary"><span id="50">50</span></i></div>
+                    <input type="search" name="" id="">
+                </div>
+                <div class="table-users">
+                    <table class="table-usersss-card2">
+                        <tr>
+                            <th>الحالة</th>
+                            <th>العضو</th>
+                            <th>العضور الثاني</th>
+                            <th>الغرفة</th>
+                            <th>الآ بي</th>
+                            <th>الوقت</th>
+                        </tr>
+                        <div class="data-tr">
+                            <% for(var i=0 ; i < stats.length ; i++){%>
+                                <tr>
+                                    <td>
+                                        <%= stats[i].stats %>
+                                    </td>
+                                    <td>
+                                        <%= stats[i].momber %>
+                                    </td>
+                                    <td>
+                                        <%= stats[i].secondmomber %>
+                                    </td>
+                                    <td>
+                                        <%= stats[i].room %>
+                                    </td>
+                                    <td>
+                                        <%= stats[i].ip %>
+                                    </td>
+                                    <td>
+                                        <%= stats[i].time %>
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </div>
+                    </table>
+                </div>
+            </div>
+            <div class="card3" style="display: none;">
+                <div class="search">
+                    <div class="incres"><span>50</span></div>
+                    <div class="decres"><span>0</span></div>
+                    <input type="search" name="" id="">
+                </div>
+                <div class="table2 table-users">
+                    <table class="table-usersss1 table-usersss">
+                        <tr>
+                            <th>العضو</th>
+                            <th>الزغرفة</th>
+                            <th>الآ بي</th>
+                            <th>الجهاز</th>
+                            <th>الصلاحيات</th>
+                            <th>الايكات</th>
+                            <th>آخر تواجد</th>
+                            <th>تاريخ التسجيل</th>
+                        </tr>
+                        <div class="data-tr">
+                            <% for(var i=0 ; i < person.length ; i++){%>
+                                <tr>
+                                    <td>
+                                        <%= person[i].user_name %>
+                                    </td>
+                                    <td>
+                                        <%= person[i].user_name %>
+                                    </td>
+                                    <td>
+                                        <%= person[i].ip %>
+                                    </td>
+                                    <td>
+                                        <%= person[i].device %>
+                                    </td>
+                                    <td>
+                                        <%= person[i].auth %>
+                                    </td>
+                                    <td>
+                                        <%= person[i].likes %>
+                                    </td>
+                                    <td>
+                                        <%= person[i].lastseen %>
+                                    </td>
+                                    <td style="width: 100px;">
+                                        <%= person[i].user_join_date %>
+                                    </td>
+
+                                    <td id="<%= person[i].user_id %>" class="togles stting" id="serach"
+                                        style="background-color: rgba(0, 0, 0, 0.439);cursor: pointer;"><img
+                                            width="10px" src="/images/settings.png" alt="" srcset="">
+                                    </td>
+                                    <div style="display: none;" id="<%= person[i].user_id %>"
+                                        class="options options3 stting-o togle ss<%= person[i].user_id %>">
+                                        <button name="like" value="<%= person[i].user_id %>"> الايكات </button>
+                                        <button name="password" value="<%= person[i].user_id %>"> كلمة مرور</button>
+                                        <button>الصلاحيات </button>
+                                        <button>-----</button>
+                                        <button>حدف صورة</button>
+                                    </div>
+                                    <td id="<%= person[i].user_id %>" class="togle clicktogel" id="serach"
+                                        style="background-color: rgba(0, 0, 0, 0.439);cursor: pointer;"><img
+                                            width="10px" src="/images/search-interface-symbol.png" alt="">
+                                    </td>
+                                    <div style="display: none;" id="ss<%= person[i].user_id %>"
+                                        class="ss<%= person[i].user_id %> options togle select1">
+                                        <button name="search0" value="<%= person[i].user_id %>">بحث</button>
+                                        <button name="search1" value="<%= person[i].ip %>">بحث عميق 1 </button>
+                                        <button name="search1" value="<%= person[i].ip %>">بحث عميق 2</button>
+                                        <button name="search1" value="<%= person[i].ip %>">بحث عميق 3</button>
+                                        <button name="block" value="<%= person[i].ip %>"> حظر </button>
+                                        <button name="block" value="<%= person[i].ip %>">حظر عميق 1</button>
+                                    </div>
+                                </tr>
+                                <% } %>
+                        </div>
+                    </table>
+                </div>
+            </div>
+            <div class="card4" style="display: none;">
+                <div class="card4-content">
+                    <input class="users-ip" style="text-align:end" type="text" placeholder="الآبي/الدولة">
+                    <div class="card4-btns">
+                        <div class="green allow-users">السماح</div>
+                        <div class="red block-users">الحظر</div>
+                    </div>
+                </div>
+                <div class="card4-table">
+                    <table>
+                        <tr>
+                            <th>العضور</th>
+                            <th>الحظر</th>
+                            <th>ينتهي في</th>
+                            <th>الحالات</th>
+                            <th>آخر حالة</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card5" style="display: none;">
+                <div class="card5-left-side">
+                    <input class="text find-clasment" type="search" placeholder="البحث في الصلاحيات"><br>
+                    <select class="clasement_select cha" name="" id=""><br>
+                        <%for(var i=0 ; i < clasement.length; i++){%>
+                            <option value="<%=clasement[i].clasment_name %>">
+                                <%=clasement[i].clasment_name %>
+                            </option>
+                            <%}%>
+                    </select><button style="
+                    margin-left: 4px;
+                    background-color: red;
+                    " class="btn-remove btn-clasmnet-remove" value="get">حدف</button><br>
+                    <button>الترتيب</button><input value="900" class="number clasment" type="number" name="" id=""><br>
+                    <p>إسم المجموعة</p>
+                    <input class="text clasment_name" value="Admin" type="text" name="" id=""><br>
+                    <button>الأيقونة</button><input value="king.git" class="text clasment_icons" type="text" name=""
+                        id=""><br>
+                    <button>الطرد</button><input class="number refus" value="99" type="number" name="" id=""><br>
+                    <button>حدف الحانط</button> <span> تفعيل</span><input class="remove-hanit" type="checkbox"><br>
+                    <button> التنبيهات</button> <span> تفعيل</span><input class="notification" type="checkbox"><br>
+                    <button> تغيير النك</button> <span> تفعيل</span><input class="change_nik" type="checkbox"><br>
+                    <button> الباند</button> <span> تفعيل</span><input class="pand" type="checkbox"><br>
+                    <button>الاعلانات</button><input class="number ads" value="99" type="number"><br>
+                    <button> إعلانات السوابر</button> <span> تفعيل</span><input class="super_ads" type="checkbox"><br>
+                    <button> فتح الخاص</button> <span> تفعيل</span><input class="open_private" type="checkbox"><br>
+                    <button> ادارة الغرق</button> <span> تفعيل</span><input class="room_managment" type="checkbox"><br>
+                    <button> إنشاء الغرف</button> <span> تفعيل</span><input class="create_room" type="checkbox"><br>
+                    <button>أٌقصى حد للغرف التابثة</button><input class="room_numbers number room_capacity"
+                        type="number"><br>
+                    <button> إدارة العضويات</button> <span> تفعيل</span><input class="momber_edite" type="checkbox"><br>
+                    <button> تعديل الصلاحيات</button> <span> تفعيل</span><input class="edite_powers"
+                        type="checkbox"><br>
+                    <button>الهدايا</button><input class="number gift" value="99" type="number"><br>
+                    <button>كشف النكات </button> <span> تفعيل</span><input class="find_nikat" type="checkbox"><br>
+                    <button> لوحة التحكم</button> <span> تفعيل</span><input class="control_panel" type="checkbox"><br>
+                    <button> دخول الغرف المغلقة</button> <span> تفعيل</span><input class="join_closed_room"
+                        type="checkbox"><br>
+                    <button> دخول مخفي</button> <span> تفعيل</span><input class="join_private" type="checkbox"><br>
+                    <button> لايكات</button> <span> تفعيل</span><input class="like" type="checkbox"><br>
+                    <button>مسح الرسائل</button> <span> تفعيل</span><input class="remove_msg" type="checkbox"><br>
+                    <button> نقل الزوار</button> <span> تفعيل</span><input class="mombes_moves" type="checkbox"><br>
+                    <button> سحب المايك</button> <span> تفعيل</span><input class="take_mic" type="checkbox"><br>
+                    <button> تفعيل المايك</button> <span> تفعيل</span><input class="active_mic" type="checkbox"><br>
+                    <button> إدارة الموقع</button> <span> تفعيل</span><input class="control_website"
+                        type="checkbox"><br>
+                    <button style="
+                    cursor: pointer;
+                    background-color: green;
+                    font-size: 18.5px;
+                    width: 75px;
+                    margin-top: 5px;
+                    " class="save_control_panel_information">حفظ</button>
+                </div>
+                <div class="card5-right-side">
+
+                </div>
+            </div>
+            <div class="card6" style="display: none; width: 100%;">
+                <input class="card5v" type="text"><br>
+                <button style="background-color:green" name="allowed" class="card5-div">إضافة الى الكلمات المسموح بها
+                    </dbutton><br>
+                    <button style="background-color: red;" name="blocked" class="card5-div">إضافة الى الكلمات
+                        الممنوعة</button><br>
+                    <button style="background-color: orange;" name="controled" class="card5-div">إضافة الى الكلمات
+                        المراقبة</button><br>
+                    <p style="font-size: 19px" class="last-word">آخر الكلمات</p>
+                    <div class="word-fiels">
+                        <% for(var i=0 ; i < world.length ; i++){%>
+                            <div class="word" style="width: 50%;">
+                                <button class="btn-remove" value="<%=world[i].user_id%>" name="deleteWord">حدف</button>
+                                <div class="world-selected">
+                                    <%=world[i].word%>
+                                </div>
+                                <div>
+                                    <%=world[i].user_name %> :... <%=world[i].ip%>
+                                </div>
+                            </div>
+                            <% } %>
+                    </div>
+                    <div class="word-table">
+                        <table>
+                            <tr>
+                                <th>التصنيف</th>
+                                <th>الكلمة</th>
+                                <th>الحدف</th>
+                            </tr>
+                            <% for(var i=0; i < allword.length ; i++) {%>
+                                <tr>
+                                    <td>
+                                        <%=allword[i].type%>
+                                    </td>
+                                    <td>
+                                        <%=allword[i].word%>
+                                    </td>
+                                    <td><button class="btn-remove" style="margin-top:10px"
+                                            name="deleteWord">حدف</button></td>
+                                </tr>
+                                <%}%>
+                        </table>
+                    </div>
+            </div>
+
+            <div class="card7" style="display: none;">
+                <div class="card7-table">
+                    <table>
+                        <tr>
+                            <th style="height: 10px;">الغرف</th>
+                            <th>صاحب الغرفة</th>
+                            <th>الاعدادات</th>
+                        </tr>
+                        <% for(var i=0 ; i < room.length ; i++){ %>
+                            <tr>
+                                <td>
+                                    <%=room[i].room_name%>
+                                </td>
+                                <td>
+                                    <%=room[i].romm_admin%>
+                                </td>
+                                <td><button id="<%=room[i].room_id%>" class="card7-stting">تعديل</button></td>
+                                <td id="<%=room[i].room_id%>" class="ss<%=room[i].room_id%> stting-sowme"
+                                    style="border: 1px solid rgba(0, 0, 0, 0); display: none;">
+                                    <div class="content-side-card7">
+                                        <div class="side">
+                                            <input class="title" value="" placeholder="عنوان الغرفة" type="text"><br>
+                                            <input class="desc" value="" placeholder="الوصف" type="text"><br>
+                                            <input class="welcomemsg" value="" placeholder="رسائل الترحيب"
+                                                type="text"><br>
+                                            <input class="pws" value="" placeholder="كلمة المرور" type="text"><br>
+                                            <input class="capacity" value="" placeholder="حجم الغرفة من 2/40"
+                                                type="number"><br>
+                                            <input class="reslike" value="" placeholder="عدد لايكات الدخول"
+                                                type="text"><br>
+                                            <input class="likevoice" value="" placeholder="عدد اللايكات لصوت"
+                                                type="text"><br>
+                                            تفعيل الصوت<input class="voice" type="checkbox" value="" name="voice"
+                                                id=""><br>
+                                            <button class="keep" id="<%=room[i].room_id%>">حفظ التعديلات</button>
+                                        </div>
+                                        <div class="nother-side">
+                                            <div class="card7-img">
+                                                <% if(room[i].img !="" ){ %>
+                                                    <%=room.img%>
+                                                        <% } %>
+                                                            <% if(room[i].img=="" ){ %>
+                                                                <input
+                                                                    style="border: none;font-size: 0px;width: 100%;height: 100%;"
+                                                                    class="roomImg" type="file" name="file"
+                                                                    id="<%=room[i].room_id%>">
+                                                                <% } %>
+                                            </div>
+                                            <button class="card7-withoutimg" value="<%=room[i].room_id%>">
+                                                بدون صورة
+                                            </button>
+                                            <div class="card7-black-img">
+                                                <input type="color" name="file" id="">
+                                            </div>
+                                            <button>حدف</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <%}%>
+                    </table>
+                </div>
+            </div>
+            <div class="card8" style="display: none;">
+                <div class="card8-content">
+                    <input class="short" type="text" placeholder="الاختصار"><br><input class="short-c" type="text"
+                        placeholder="الزغرفة"><br>
+                    <button class="add-short">إضافة</button>
+                    <table>
+                        <tr>
+                            <th>الاختصار</th>
+                            <th>الزغرفة</th>
+                            <th>الحدف</th>
+                        </tr>
+                        <% for(var i=0 ; i< short.length ; i++){ %>
+                            <tr>
+                                <td>
+                                    <%=short[i].short%>
+                                </td>
+                                <td style="width: 290px;">
+                                    <%=short[i].short_content%>
+                                </td>
+                                <td><button value="<%=short[i].short_id%>" style="background-color: red;"
+                                        class="btn-remove-short">حدف</button></td>
+                            </tr>
+                            <% } %>
+                    </table>
+                </div>
+            </div>
+            <div class="card9" style="display: none;">
+                <style>
+                    .card9-content th {
+                        width: 100px;
+                    }
+                </style>
+                <div class="card9-content">
+                    <table>
+                        <tr>
+                            <th>الاشتراك</th>
+                            <th>العضو</th>
+                            <th>الزغرفة</th>
+                            <th>المدة</th>
+                            <th>المتبقي</th>
+                            <th>آخر تواجد</th>
+                            <th></th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card10" style="display: none;">
+                <div class="card10-content">
+                    <input class="msg-title" placeholder="عنوان السرالة" type="text"><br><input class="msg-content"
+                        placeholder="الرسالة" style="height: 70px;" type=""><br>
+                    <button value="welcome" class="welcome-btn btn">إضافة الى رسائل الترحيب</button><br>
+                    <button value="auto" class="auto-btn btn">إضافة الى الرسائل التلقائية</button><br>
+                    <p>الرسائل</p>
+                    <table>
+                        <tr>
+                            <th>التصنيف</th>
+                            <th>العنوان</th>
+                            <th style="width:290px; padding: 0px 240px;">الرسالة</th>
+                            <th></th>
+                        </tr>
+                        <%for(var i=0 ; i< messages.length; i++){%>
+                            <tr>
+                                <td>
+                                    <%=messages[i].type%>
+                                </td>
+                                <td>
+                                    <%=messages[i].title%>
+                                </td>
+                                <td>
+                                    <%=messages[i].msg_content%>
+                                </td>
+                                <td><button style="background-color: red;color:white;cursor:pointer"
+                                        class="remove-message" value="<%=messages[i].message_id%>">حدف</button></td>
+                            </tr>
+                            <%}%>
+                    </table>
+                </div>
+            </div>
+            <div class="card11" style="display:none">
+                <div class="card11-content">
+                    <p class="title"> <i class="fa fa-home"></i> ادارة الموقع</p><br>
+                    <p>اسم الموقع</p> <br>
+                    <textarea class="card11-name" cols="30" rows="4">
+                        شات ميديا دردشة ميديا للجوال 
+                    </textarea><br>
+                    <p> عنوان الصفحه </p><br>
+                    <textarea class="card11-title" cols="30" rows="4">
+                        شات ميديا للجوال جات ميديا للجوال دردشه ميديا شات ميديا للجوال شات ميديا مجاني بدون اشتراك شات ميديا شات صوتي جات ميديا العراق للجوال دردشه ميديا للجوال                    </textarea>
+                    </textarea> <br>
+                    <p> وصف الموقع </p><br>
+                    <textarea class="card11-desc" cols="30" rows="4">
+                        شات ميديا للجوال جات ميديا للجوال دردشه ميديا شات ميديا للجوال شات ميديا مجاني بدون اشتراك شات ميديا شات صوتي جات ميديا العراق للجوال دردشه ميديا للجوال                    </textarea>
+                    </textarea><br>
+                    <p> الكلمات الدلاليه </p><br>
+                    <textarea class="card11-keyword" cols="30" rows="74>
+                        شات ميديا دردشة ميديا للجوال 
+                    </textarea><br>
+                    <p> السكربت </p><br>
+                    <textarea class=" card11-script" cols="30"
+                        rows="4">$.getScript("https://raw.githack.com/waleed-qaid/des3/main/www.1des.net-chatt-www.chaatom.com0.js"); });                    </textarea>
+                    </textarea><br>
+                    <p> لون القوالب </p><br>
+                    <input class="card11-template-color" type="color" name="" id="">
+                    <p> لون الأزرار </p><br>
+                    <input class="card11-icons-color" type="color" name="" id=""><br>
+                    <p> الرسائل التلقائية </p><br>
+                    <input class="auto-msg" type="number" name="" id=""><br>
+                    <p style="margin-top:20px"> الحانط </p><br>
+                    <input class="hanit-likes" type="number">عدد الايكات <br>
+                    <input type="number" name="" id=""> المده بين رسائل الحائط بالدقيقه <br>
+                    <p style="margin-top:20px"> الزوار </p><br>
+                    <div>
+                        <input type="number" name="" id=""> عدد الايكات للمحادثات الخاصه <br>
+                        <input type="number" name="" id=""> عدد الايكات للتنبيهات <br>
+                        <input type="number" name="" id=""> عدد الايكات لإرسال صور\فيديو <br>
+                        <input type="number" name="" id=""> عدد الايكات لتغير الزخرفه والحاله <br>
+                        <input type="number" name="" id=""> عدد الايكات لتغير الصوره <br>
+                        <input type="number" name="" id=""> عدد الاختصارت في الرساله الواحده <br>
+                        <input type="number" name="" id=""> تعدد النكات من نفس الجهاز <br>
+                        <input type="number" name="" id=""> تثبيت النكات بعد انقطاع النت <br>
+                        <input type="checkbox" name="" id=""> تفعيل المكالمات <br>
+                        <input type="number" name="" id=""> الايكات المطلوبه لإجراء مكالمات <br>
+                    </div>
+                    <button class="card11-save">حفظ <i class="fa fa-save"></i> </button><br>
+                    <div>
+                        <p><i class="fa fa-image"></i> ايقونات السوابر</p>
+                    </div>
+                    <div>
+                        <img src="" alt="" srcset="">
+                    </div>
+                </div>
+            </div>
+            <div class="card12" style="display: none;">
+                <div class="card12-content">
+                    <p style="background-color: green;" class="title"> <i class="fa fa-home"></i>النطاقات</p><br>
+                    <select name="" id="">
+                        <option value=""></option>
+                    </select>
+                    <div style="color: red;font-size:19px;font-weight: 600;"> يتطلب موافقه من صاحب الموقع </div>
+                    <p class="pp" style="width:180px"> إسم النطاق site.com? </p> <br>
+                    <input type="text" placeholder="site.com">
+                    <p class="pp"> إسم الموقع </p><br>
+                    <textarea class="pp" cols="30" rows="2" placeholder=" إسم الموقع : شاط كتابي"></textarea>
+                    <p class="pp"> عنوان الصفحه </p><br><textarea class="pp" cols="30" rows="2"
+                        placeholder=" عنوان الصفحه : شاط كتابي">
+                    </textarea>
+                    <p class="pp"> وصف الموقع </p><br>
+                    <textarea class="pp" cols="30" rows="2" placeholder=" وصف الموقع : شاط كتابي"></textarea>
+                    <p class="pp"> الكلمات الدلاليه </p><br>
+                    <textarea class="pp" cols="30" rows="2" placeholder="كلمات, كلمات"></textarea>
+                    <p class="pp"> السكربت </p><br>
+                    <textarea class="pp" cols="30" placeholder="للمبرمجين فقط"></textarea>
+                    <p style="margin-top:15px"> لون القالب </p>
+                    <input class="" type="color" name="" id="">
+                    <p> لون المحتوى </p>
+                    <input class="" type="color" name="" id=""><br>
+                    <p> لون الازرار </p>
+                    <input class="" type="color" name="" id=""><br>
+                    <button>حفظ</button>
+                </div>
+            </div>
+            <div class="card13" style="display: none;">
+                <div class="card13-content">
+                    <p style="font-family:600">الإعدادات</p>
+                    <input type="number" name="" id="">أقل مدة تواجد <br>
+                    <input type="number" name="" id=""> اطول مده تواجد <br>
+                    <input type="number" name="" id=""> اقل مده غياب <br>
+                    <input type="number" name="" id=""> اطول مده غياب <br>
+                    <select name="" id="">
+                        <option value="yes">نعم</option>
+                        <option value="no">لا</option>
+                    </select>التفعيل الوهمي
+                    <div>0 الرصيد</div>
+                    <div>0 التواجد</div>
+                    <button style="margin-top:15px;background-color:red;color:white">حفظ</button><br>
+                    <button class="add-new-boot-btn"
+                        style="background-color: green;color: white;margin-top: 2px;">إضافة</button><br>
+                    <div class="add-new-boot" style="display:none;">
+                        <input class="stats" type="text" placeholder="الحالة">
+                        <input class="country" type="text" placeholder="الدولة">
+                        <input class="style" type="text" placeholder="الزغرفة">
+                        <input class="desc" type="text" placeholder="الوصف">
+                        <input class="likes" type="text" placeholder="أعجاب">
+                        <input class="photo" type="text" placeholder="الصورة">
+                        <button class="add-boot-into" style="background-color: green;">حفظ + إضافة</button>
+                    </div>
+                    <table style="margin-top:15px">
+                        <tr>
+                            <th>الحالة</th>
+                            <th>الدولة</th>
+                            <th>الزغرفة</th>
+                            <th>الوصف</th>
+                            <th>أعجاب</th>
+                            <th>تثبيت الغرفة</th>
+                            <th>الصورة</th>
+                        </tr>
+                        <%for(var i=0;i< boot.length ; i++){%>
+                            <tr>
+                                <td>
+                                    <%=boot[i].stats%>
+                                </td>
+                                <td>
+                                    <%=boot[i].country%>
+                                </td>
+                                <td>
+                                    <%=boot[i].style%>
+                                </td>
+                                <td>
+                                    <%=boot[i].descri%>
+                                </td>
+                                <td>
+                                    <%=boot[i].style%>
+                                </td>
+                                <td>
+                                    <%=boot[i].pin_room%>
+                                </td>
+                                <td>
+                                    <%=boot[i].photo%>
+                                </td>
+                            </tr>
+                            <%}%>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/javascripts/control.js"></script>
+</body>
+
+</html>

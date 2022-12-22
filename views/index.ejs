@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="text/html=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="/stylesheets/chat.css">
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title> شات بنوتة قلبي شات عراقي </title>
+</head>
+
+<style>
+  button {
+    cursor: pointer;
+  }
+</style>
+
+<body>
+  <!-- <div id="loader"><div id="loader-content"></div></div> container-chat content-chat-1 -->
+  <div class="container-chat layer1" style="display: none;">
+    <div class="content-chat-1">
+      <div class="modal-body" style="display: flex;display:none">
+        <div class="modal-title" style="display: flex;justify-content: space-between;">
+          <p><i class="mini fa fa-comments "></i>أنشاء غرفة جديدة</p>
+          <div style="background-color: #77777769;
+             border-radius: 5px;cursor: pointer;">
+            <i class="fa fa-times cute-room-creation"></i>
+          </div>
+        </div>
+        <div class="break" style="background-color: #efefef; padding: 5px;">
+          <div>
+            <div style="height: 197px;height: 197px;
+            position: relative;
+            bottom: 20px;">
+              <div>
+                <br> <input class="rtopic" type="text" placeholder="عنوان الغرفه" />
+                <br> <input class="rabout" type="text" placeholder="الوصف" />
+                <br> <input class="rwelcome" type="text" placeholder="رساله الترحيب" />
+                <br> <input class="rlike" type="number" placeholder="عدد ليكات الدخول للغرفة" min="0"
+                  max="1000000000000" />
+                <br> <input class="rpwd" type="password" placeholder="كلمه المرور" />
+                <br> <input class="rmax" type="number" placeholder="حجم الغرفه من 2 ألى 40" min="2" max="40" />
+                <br> <label class="checkbox-inline"><input class="rdel" type="checkbox" value="" />
+                  <span style="margin-left: 5px;
+                  font-size: 14.5px;
+                  font-weight: 600;
+                  opacity: 0.7;
+                  ">تثبيت الغرفة</span>
+                </label><br />
+                <br> <br />
+              </div>
+            </div>
+            <br> <label class="checkbox-inline"><input class="broadcast" type="checkbox" value="" />
+              <span style="margin-left: 5px;
+              font-size: 14.5px;
+              font-weight: 600;
+              opacity: 0.7;
+              ">تشغيل المايك</span></label><br />
+            <br> <button class="rmake btn-primary fl"><span class="fa fa-plus">إنشاء الغرفه</span></button>
+            <br>
+            <div class="break border corner" id="ops" style="width: 100%; padding: 2px;"></div>
+          </div>
+          <div style="margin-left: 10px;" class="image-upload">
+            <div class="image-cader-room">
+              <input class="room-img" style="width: 80px;
+              height: 54px;" id="room-image" type="file" accept="image/png, image/gif, image/jpeg">
+            </div>
+            <div>
+              <button class="without-img-room" style="border: none;
+              width: 80px;
+              height: 30px;
+              border: 1px solid black;
+              font-size: 15.5px;
+              margin: 1px;
+              font-weight: 600;
+              margin-top: 5px;">بدون صورة</button>
+            </div>
+            <div>
+              <input style="border: none;
+              width: 80px;
+              height: 40px;
+              margin: 1px;
+                margin-top: 1px;
+              margin-top: 10px;" type="color" name="" id="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="emox-icons-repl-hanit">
+       
+      </div>
+      <div class="replay-hanit">
+        <div class="title-hanit">
+          <p>التعليقات <i class="fa fa-comments"></i></p>
+          <div class="close-rep-hanit" style="background-color: #77777769;border-radius: 5px;cursor: pointer;"><i
+              class="fa fa-times"></i></div>
+        </div>
+        <div class="msg-hanit">
+          <div class="img-re">
+            <img style="width:60px;position: relative;
+            right: 10px;" src="/emojey/favicon.ico" alt="" srcset="">
+          </div>
+          <p>سلام</p>
+        </div>
+        <div class="msg-hanit-replay">
+          <div class="rep-infos">
+            <div class="img-rep">
+              <img style="width:50px" src="/emojey/favicon.ico" alt="" srcset="">
+            </div>
+            <div class="msg-rep-feed">
+              <p>محمد</p>
+              <p> تم اخاي الزين</p>
+              <div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="send-rep">
+          <div class="emo-rep-hanit">
+            <img style="width : 25px" src="/emojey/emoii.gif" alt="">
+          </div>
+          <input type="text" class="rep-hn-msg">
+          <button class="btn-send-replay-hanit"><i class="fa fa-send sndpm fl btn-primary"></i></button>
+        </div>
+      </div>
+      <div class="alert-msg">
+          <div class="al-title">تنبيه</div>
+        <div style="display: flex;
+        align-items: center;
+        width: 77px;margin-top: 0px;
+        " class="infos-uu">
+            <img width="28px" style="margin-top:2px;" class="imghh" src="" alt="">
+            <p style="margin-left: 2px;font-size: 16.5px;" class="namehhh"></p>
+        </div>
+        <p class="alert-inner">يجب عليك الدخول كمخفي</p>
+      </div>
+      <div class="search01" style="display: none;">
+        <div class="hide-x-search" style="color:red;text-align:end;">x</div>
+      </div>
+      <div style="display: none;background-color: #004a6e;
+      color: white;
+      font-weight: 600;
+      border-radius: 2px;
+      background-color: #efefef;
+      " class="alert"></div>
+      <div class="messanger msg-pro-di">
+        <div class="messanger-header">
+          <div class="messanger-infos">
+            <div class="image-m">
+              <img style="width: 20px;" src="/emojey/favicon.ico" alt="" srcset="">
+            </div>
+            <div class="name-m">محمد</div>
+          </div>
+          <div class="messanger-infos">
+            <div class="more-messanger">
+              <img src="/images/show-more-button.png" alt="" srcset="">
+            </div>
+            <div class="remove">
+              <img src="/images/line x.png" alt="" srcset="">
+            </div>
+          </div>
+        </div>
+        <div class="messanger-msg-text private-field">
+          <div class="user-call-request">
+            <p class="ref"><i class="fa fa-phone callx"></i> رفض</p>
+            <p class="acc"><i class="fa fa-phone callx"></i> قبول</p>
+            <p class="statspp">يتم الاتصال بك</p>
+          </div>
+
+          <div class="user-call">
+            <div class="call-infos">
+              <img width="24px" src="/images/person1.png" alt="">
+              <p class="name-call">الاسم</p>
+            </div>
+            <div class="loading-call">
+              <i class="fa fa-phone callx"></i>
+              <p class="stats-call">.. يتم الاتصال</p>
+            </div>
+         </div>
+
+        </div>
+        <div class="messanger-send-actions">
+          <input class="privateV" type="text" placeholder="أكتب رسالة هنا"> <button class="sendPmsg">ارسال</button>
+        </div>
+      </div>
+      <div class="profile" style="display: none;">
+        <div class="prof-info">
+          <div class="title-profile">محمد الجناتي</div>
+          <i class="fa fa-times"></i>
+        </div>
+        <img style="width:100%;height: 240px;" src="/emojey/favicon.ico" alt="" srcset="">
+        <p style="margin-left:10px; text-align: center;margin-top: 5px;"><span
+            style="font-weight:600;text-align: center;opacity: 0.8;"><img style="width: 20px;"
+              src="/images/Flag_of_Morocco.svg.png" alt="" srcset="">(عضو جديد)</span></p>
+        <div class="profile-options">
+          <div style="font-size:18px;"> المغرب</div>
+          <div style="background-color:rgba(0, 0, 255, 0.842);color:white;padding:2px;font-size: 18px;">الغرفة العامة
+            رقم 1</div>
+        </div>
+        <div class="profile-options profile-options1">
+          <div><i class="fl fa fa-comment  btn upm borderg"></i> محادثة خاصة</div>
+          <div><i class="fl fa fa-envelope-o btn unot borderg"></i> تنبيه</div>
+          <div style="color: red;"> <i class="fl fa fa-heart btn ulike borderg"></i> 0</div>
+          <div><i class="fl fa fa-microphone-slash  btn uml borderg"></i> سحب المايك</div>
+          <div><i class="fl fa fa-microphone-slash  btn umm borderg"></i> كتم المايك</div>
+          <div><i class="fl fa fa-microphone  btn uma borderg"></i> السماح</div>
+          <div style="color: blue;"><i class="fl fa fa-diamond btn ugift borderg"></i> إرسال هدية</div>
+          <div><i class="fl fa fa-search btn uh borderg"></i> كشف النكات</div>
+          <div style="color: pink;"><i class="fl fa fa-star btn ubnr borderg"></i> البنر</div>
+          <div><i class="fl fa fa-ban btn udelpic borderg"></i> حدف صورة</div>
+
+          <div style="color:purple ;"><i class="fl fa fa-user-times btn urkick borderg"></i> طرد من الغرفة</div>
+          <div style="color: green;"><i class="fl fa fa-star btn umod borderg"></i> ترقية الى مراقب</div>
+          <div style="color: red;"><i class="fl fa fa-ban btn ukick borderg"></i> طرد</div>
+          <div style="color: red;"><i class="fl fa fa-ban btn ukick borderg"></i> باند</div>
+          <div style="color: red;"><i class="fl fa fa-ban btn ukick borderg"></i> تجاهل</div>
+        </div>
+        <div class="display-name" style="width: 100%;height:50px;border:0.5px solid rgba(0, 0, 0, 0.251)">
+          <span>تغيير</span><i class="btn btn-primary u-nickc fr fa fa-save"></i><input type="text"><span>الزغرفة</span>
+        </div>
+        <div class="display-like">
+          <span>اللايكات</span><input type="number"> <button>حفظ</button>
+        </div>
+        <div class="display-group">
+          <p>المجموعات</p>
+          <input type="text" name="" id="" placeholder="البحث في الصلاحيات"><br>
+          <select name="" id="">
+            <option value=""></option>
+          </select>
+          <p>المدة بالأيام</p>
+          <input value="0" type="number"> <button>حفظ</button>
+        </div>
+        <div class="display-room">
+          <p>الغرف</p>
+          <input type="text">
+          <select name="" id="">ل<br>
+            <option value=""></option>
+          </select>
+          <p>كلمة المرور (إختياري)</p>
+          <input type="password"> <button>نقل</button>
+        </div>
+      </div>
+      <div class="chat-part1" style="overflow-x:hidden;overflow-y:hidden;">
+        <div class="chat-sectionn">
+          <div class="display-voice">
+            <div class="main-voice-control" style="z-index: 200;background-color: rgb(115, 177, 115);">
+              <i style="margin-left: 3%;
+              font-size: 38px !important;" class="fa fa-volume-up"></i>
+            </div>
+            <div style="z-index: 100;" id="0" class="cnl voice-chanel0">
+              <img src="/images/mic2.png"></i>  
+            </div>
+            <div style="z-index: 200;" id="1" class="cnl voice-chanel1"><img src="/images/mic2.png"></i></div>
+            <div style="z-index: 300;" id="2" class="cnl voice-chanel2"><img src="/images/mic2.png"></i></div>
+            <div style="z-index: 400;" id="3" class="cnl voice-chanel3"><img src="/images/mic2.png"></i></div>
+            <div style="z-index: 500;" id="4" class="cnl voice-chanel4"><img src="/images/mic2.png"></i></div>
+          </div>
+          <div class="message-chat" style="overflow-y:auto ;width: 100%;">
+            <div class="msg" style="display: none;">
+              <img class="p-img" src="/images/person.png" style="width:55px ;" alt="" srcset="">
+              <div class="msg-content">
+                <div class="name">محمد الجناتي</div>
+                <div class="msg-string">مرحبا يا رفاق</div>
+              </div>
+              <div class="time">0د</div>
+            </div>
+          </div>
+
+          <div class="stats stats1" style="display: none;z-index: 800;">
+            <div class="x-icons">
+              <p class="title">
+                العنوان
+              </p>
+              <div class="close">
+                <i class="label label-danger border nosel fa fa-close fr"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="stats stting-card" style="display: none;z-index: 800;">
+            <div class="x-icons">
+              <p class="title">
+                العنوان
+              </p>
+              <div class="close">
+                <i class="label label-danger border nosel fa fa-close fr"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="stats private-stats" style="display: none;z-index: 800;">
+            <div class="x-icons">
+              <p class="title">
+                الخاص
+              </p>
+              <div class="close">
+                <i class="label label-danger border nosel fa fa-close fr"></i>
+              </div>
+            </div>
+            <div class="private" id="private" style="overflow-y: auto;height: 80vh;">
+              <div class="infos-users-oline private-msg" style="display: none;"><img src="/images/person.png" alt=""
+                  srcset="">
+                <div>
+                  <p class="name">محمد</p>
+                  <p class="boi msg-hand"> السلام عليكم </p>
+                </div>
+                <div class="drapo noti-private-msg">1</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="stats createroom-stats" style="display: none;z-index: 800;">
+            <div class="x-icons">
+              <p class="title" style="width:150px;">
+                غرفة الدردشة
+              </p>
+              <div class="close">
+                <i class="label label-danger border nosel fa fa-close fr"></i>
+              </div>
+            </div>
+            <div class="create-room">
+              <button class="createroombtn"><i class="border btn label label-success fl   fa fa-plus "></i>غرفة
+                جديدة</button>
+            </div>
+            <div class="rooms-input" style="display: none;">
+              <input class="roomn" type="text" placeholder="اسم الغرفة">
+              <input class="rcapacity" type="number" placeholder="سعة الغرفة">
+              <button class="creatroom-ajax"> غرفة جيددة</button>
+              <p class="createroommsg" style="height: 10;"></p>
+            </div>
+            <div class="rooms rooms-fiels" style="overflow-y: auto;">
+              <div class="infos-users-oline rooms-r"><img src="/images/person.png" alt="" srcset="">
+                <div>
+                  <p class="name">اسم الغرفة</p>
+                  <p class="boi"> وصف الغرفة </p>
+                </div>
+              </div>
+              <div class="drapo"></div>
+            </div>
+          </div>
+          <div style="z-index: 1000;" class="icons-hanitss">
+           
+          </div>
+          <div class="stats hanit-stats" style="display: none;z-index: 800;">
+            <div class="x-icons">
+              <p class="title">
+                الحانط
+              </p>
+              <div class="close">
+                <i class="label label-danger border nosel fa fa-close fr"></i>
+              </div>
+            </div>
+            <div class="hanit-msg">
+              
+            </div>
+            <div class="sendpost">
+              <div style="width: 37px;position: relative;
+              top: 6px;">
+                <label for="filess" class="hanit-shear"><i
+                    class="fr fa fa-share-alt sndfilebc fl btn btn-primary"></i></label>
+                <input id="filess" type="file" class="file-input" accept="image/png, image/gif, image/jpeg ,video/mp4">
+              </div>
+              <div class="hanit-show-icons">
+                <img src="/images/icons.gif" style="width: 25px;margin-right: 6px;margin-top: 1px;margin-left: 7px;"
+                  alt="">
+              </div>
+              <input style="text-align: end;" class="value-hanit" type="text" placeholder=" اكتب شيء ما تحبه ">
+              <button id="btn-send-hanit"><i class="fa fa-send sndbc fl btn-primary send"></i></button>
+            </div>
+          </div>
+          <div class="send-msg-field">
+            <div class="symbols">
+              <i style="color: white;background-color: #b31f30;" class="fa fa-sign-out fl btn-primary"></i>
+            </div>
+            <div class="more">
+              <div
+                style="width:256px;height: 240px; border:1px solid black;position: absolute;bottom: 32px;background-color: rgb(255, 255, 255);overflow-y: auto;"
+                class="emojey">
+                
+              </div>
+              <img class="fl nosel emobox" style="padding:5px;width:35px;height: 34px;" src="/images/icons.gif">
+            </div>
+            <div class="send" style="display: flex;">
+              <input class="msgvalue" placeholder="أكتب رسالة هنا" type="text" style="width: 85%;padding: 1px 5px;">
+              <button style="cursor: pointer;" class="sendmsg"><i class="fa fa-send fl btn-primary"></i>
+                أرسال</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-section">
+        <div class="card card1"> 0</div>
+        <div class="card prv2">الخاص<i class="move ae fa chats label label-primary fa-comment"></i> </div>
+        <div class="card rooms rooms-onclick">الغرف<i class="move ae fa label label-primary fa-users"></i> </div>
+        <div class="card alhanit">الحانط<i class="move ae fa label label-primary fa-commenting "></i> </div>
+        <div class="card stting">الضبط<i class="move ae label label-primary fa fa-gear"></i> </div>
+      </div>
+    </div>
+  </div>
+  <div class="container layer2" style="display: block;">
+    <div class="content">
+      <div class="header-content">
+        <div class="header">
+          <div class="part1-header">
+            <p>شات بنوتة قلبي</p>
+            <div class="referech-btn">
+              <i class="btn fr btn-success fa fa-refresh" style="font-size:20px; color: white; z-index: 30;"></i>
+            </div>
+          </div>
+          <div class="part2-header-img">
+            <img src="images/header.gif" alt="" srcset="">
+          </div>
+          <div class="part3-header-menu">
+            <div class="menu-div">إتصل بنا</div>
+            <div class="menu-div">حمل التطبيق</div>
+            <div class="menu-div">القوانين</div>
+            <div class="menu-div">الاشتراكات</div>
+          </div>
+          <div class="part4-header-login-actions">
+            <div class="div-login-option op3" style="color: #337ab7;">
+              <i class="fa fa-user"></i>
+              دخول الزوار
+            </div>
+            <div class="div-login-option op2">
+              <i class="fa fa-user"></i>
+              دخول الاعضاء
+            </div>
+            <div class="div-login-option op1" style="color: #337ab7;">
+              <i class=" fa fa-user-plus"></i> تسجيل العضوية
+            </div>
+          </div>
+          <div class="part-header-field-input in1" style="display: none;">
+            <div class="menu-display">
+              <div>
+                <input type="text" class="namec" placeholder="اكتب اسم العضوية"><br>
+                <input type="password" class="pwsc" placeholder="اكتب كلمة المرور"><button value="creat"
+                  class="btn">دخول</button>
+              </div>
+              <div class="eyes-click" style="position: relative;left: 15px;top:35px">
+                <i class="fr fa fa-eye label-info" style="color: black;padding:4px;margin:2px;border-radius:4px;"></i>
+              </div>
+            </div>
+          </div>
+          <span onloadstart=""></span>
+          <div class="part-header-field-input in2" style="display: block;">
+            <div class="menu-display">
+              <div>
+                <input class="namel" type="text" placeholder="اكتب اسم العضوية"><br>
+                <input class="pwsl" type="password" placeholder="اكتب كلمة المرور"><button class="btn2">دخول</button>
+              </div>
+              <div class="eyes-click" style="position: relative;left: 15px;top:35px">
+                <i class="fr fa fa-eye label-info" style="color: black;padding:4px;margin:2px;border-radius:4px;"></i>
+              </div>
+            </div>
+          </div>
+          <div class="part-header-field-input in3" style="border:none;">
+            <div class="menu-display">
+              <div>
+                <input class="nakename" type="text" placeholder="لأكتب  الاسم المستعار"><button class="btn3"
+                  value="fake">دخول</button>
+              </div>
+              <div class="eyes-click">
+                <i class="fr fa fa-eye label-info"
+                  style="color: black;padding:4px;margin:2px;border-radius:4px;position: relative;left:15px"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="main-content-home-page">
+          <div class="slider">
+            <div class="oline">...جاري الاتصال </div>
+            <div class="nth-of-users">0</div>
+          </div>
+        </div>
+      </div>
+      <div class="oline-users" style=" overflow-y: auto;">
+        <!-- <div class="users-o">
+          <div class="infos-users-oline">
+            <img src="/emojey/favicon.ico" alt="" srcset="">
+            <div>
+              <p class="name">Mohammed</p>
+              <p class="boi">غير مسجل</p>
+            </div>
+          </div>
+          <div class="drapo">
+            <img src="/images/Flag_of_Morocco.svg.png" alt="" srcset="">
+          </div>
+        </div> -->
+      </div>
+      <div class="footer-site">
+        <div class="fr borderg minix"
+          style="position: absolute; bottom: 0px; padding: 2px; background-color: white; z-index: 1; color: lightslategrey; font-size: small!important; height: 22px; width: inherit; text-align: left;">
+          Copyright © 2020 <a title="skay-host.com" class="mini" href="https://mobail.host/">موبايل هوست</a>. All Rights
+          Reserved</div>
+      </div>
+    </div>
+  </div>
+  <script src="/javascripts/app.js"></script>
+  <script src="/javascripts/test.js"></script>
+  <script src="/app.ajx.js"></script>
+  <script  type="module" src="/javascripts/chat.js"></script>
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+  </style>
+</body>
+
+</html>

@@ -1,0 +1,601 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.left-side {
+
+    height: 100vh;
+    border: 1px solid rgba(0, 204, 255, 0.305);
+}
+
+.right-side {
+    width: 70%;
+    height: 100vh;
+}
+
+.called {
+    width: 100%;
+    height: 40px;
+    padding: 13px 20px;
+    color: #337ab7;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.called:hover {
+    background-color: #3379b715;
+    cursor: pointer;
+}
+
+.card1 {
+    padding: 10px;
+}
+
+.card1 .search,
+.card2 .search,
+.card3 .search , 
+.search-card2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.incres span,
+.decres span {
+    font-size: 15px;
+}
+
+.incres,
+.decres ,.incres-card2,
+.decres-card2 {
+    cursor: pointer;
+    width: 50px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.608);
+    padding: 5px 5px;
+    border-radius: 4px;
+    margin-left: 2px;
+    margin-top: 10px;
+    position: relative;
+    bottom: 4px;
+    color: white;
+    text-align: center;
+}
+
+
+.decres {
+    margin-left: 5px;
+}
+
+.search input {
+    margin-left: 10px;
+    height: 27px;
+    padding: 3px;
+    font-size: 15px;
+}
+
+td,
+th {
+    border: 1px solid #000000;
+    text-align: left;
+    padding: 8px;
+}
+
+.table-users table tr th {
+    text-align: center;
+    padding: 2px 2px;
+    background-color: #337ab7;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.options {
+    width: 80px;
+    background-color: #000000;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    position: absolute;
+    text-align: center;
+}
+
+
+.options3 {
+    width: 80px;
+    background-color: #000000;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    position: absolute;
+    left: 78%;
+    /* top: 20%; */
+    text-align: center;
+
+}
+
+.options button {
+    border: none;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #000000;
+    cursor: pointer;
+}
+
+.options button {
+    width: 114%;
+    border: 1px solid rgba(0, 0, 255, 0.678);
+    padding: 2px 2px;
+    cursor: pointer;
+    height: 31px;
+    font-size: 13px;
+}
+
+.options button:hover {
+    border: 3px solid rgba(0, 0, 255, 0);
+}
+
+
+.card2 td,
+.card2 th {
+    font-size: 15.2px;
+    font-weight: 700;
+    width: 128px;
+}
+
+.card4-content {
+    display: flex;
+    align-items: center;
+}
+
+.card4-btns div {
+    width: 60px;
+    height: 20px;
+    text-align: center;
+    margin-left: 5px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.card4-btns {
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+}
+
+.green {
+    background-color: green;
+}
+
+.red {
+    background-color: red;
+}
+
+.card4-content input {
+    font-size: 18px;
+    height: 25px;
+}
+
+.card4-table th {
+    height: 10px;
+    background-color: blue;
+    color: white;
+    font-weight: 600;
+}
+
+.card5-div {
+    height: 20px;
+    cursor: pointer;
+    border: none;
+    border: 1px solid black;
+    margin-left: 5px;
+    margin-top: 10px;
+    color: white;
+    font-weight: 600;
+}
+
+.word-table th,
+.word-table td {
+    border: 1px solid black;
+}
+
+.word {
+    width: 100px;
+    height: 60px;
+    border: 1px solid block;
+}
+
+.word-fiels {
+    height: 300px;
+    overflow-y: auto;
+}
+
+.word-table {
+    margin-top: 10px;
+}
+
+.content-side-card7 {
+    display: flex;
+    flex-direction: row;
+    background-color: aqua;
+    border: 1px solid black;
+    position: relative;
+}
+
+.card7-img {
+    width: 100px;
+    height: 50px;
+    background-color: #337ab7;
+}
+
+.last-word {
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.word {
+    margin-top: 10px;
+}
+
+.card7-stting {
+    margin-top: 10px;
+    width: 60px;
+    padding: 2px 0;
+    text-align: center;
+    background-color: green;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    border: none;
+}
+
+.btn-remove {
+    margin-top: 10px;
+    width: 60px;
+    padding: 2px 0;
+    text-align: center;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    border: none;
+}
+
+.world-selected {
+    margin-top: 5px;
+    background-color: yellow;
+    font-size: 18px;
+}
+
+td,
+th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: end;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #337ab7;
+    color: white;
+}
+
+table {
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.card8-content input {
+    width: 190px;
+    height: 30px;
+    margin-top: 2px;
+    text-align: end;
+}
+
+.card8-content button {
+    background-color: green;
+    width: 100px;
+    height: 30px;
+    margin-top: 10px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.card8-content table {
+    margin-top: 20px;
+}
+
+.card8-content th {
+    height: 20px;
+}
+
+.card10-content th {
+    text-align: end;
+    height: 10px;
+}
+
+.card10-content input {
+    margin-top: 5px;
+    width: 190px;
+    text-align: end;
+}
+
+.card10-content button {
+    margin-top: 7px;
+    border: none;
+    font-weight: 600;
+    height: 30px;
+    width: 190px;
+    border-radius: 2px;
+}
+
+.welcome-btn {
+    background-color: green;
+    color: white;
+}
+
+.auto-btn {
+    background-color: red;
+    color: white;
+}
+
+.card10-content table {
+    margin-top: 15px;
+}
+
+.card10-content p {
+    margin-top: 5px;
+}
+
+.card5-left-side {
+    margin-left: 10px;
+}
+
+.card5-left-side select {
+    width: 200px;
+    height: 25px;
+}
+
+input.text {
+    width: 200px;
+    height: 25px;
+    margin-top: 2px;
+    font-size: 17px;
+}
+
+input.number {
+    width: 50px;
+    height: 25px;
+    margin-top: 2px;
+    font-size: 17px;
+}
+
+.card5-left-side button {
+    height: 23px;
+    border: none;
+    background-color: #2d2d74;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 4px;
+    padding: 4px 9px;
+    font-family: s;
+    margin-top: 1px;
+}
+
+.card5-left-side p {
+    font-size: 18px;
+}
+
+.card5-left-side span {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.card5-left-side input {
+    margin-left: 2px;
+    margin-top: 2px;
+}
+
+.card5 {
+    display: flex;
+    flex-direction: row;
+}
+
+.card5-right-side {
+    width: 300px;
+    height: auto;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.card5-right-side img:hover {
+    background-color: rgba(172, 255, 47, 0.427);
+}
+
+
+#loader {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    z-index: 99999;
+    background: rgb(255, 255, 255)
+}
+
+#loader div {
+    width: 200px;
+    height: 200px;
+    border-top: 1px solid black;
+    border-radius: 50%;
+    animation: reload 500ms ease-in infinite;
+}
+
+@keyframes reload {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.card11-content p.title {
+    width: 150px;
+    background-color: #5bc0de;
+    color: white;
+    padding: 5px 20px;
+    font-size: 17px;
+    margin-top: 5px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.card11-content p {
+    width: 120px;
+    background-color: #2a6380;
+    color: white;
+    padding: 5px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+textarea {
+    font-size: 16px;
+}
+
+.card11-content input {
+    width: 100px;
+    height: 25px;
+}
+
+.card11-content button {
+    width: 80px;
+    padding: 2px;
+    text-align: center;
+    background-color: #2a6380;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.card12-content select {
+    width: 150px;
+    height: 30px;
+}
+
+
+.card12-content p {
+    width: 120px;
+    height: 25px;
+    background-color: #2a6380;
+    color: white;
+    font-size: 16px;
+    padding: 2px 0px;
+    font-weight: 600;
+    text-align: center;
+
+}
+
+.card12-content p.pp {
+    position: relative;
+    top: 15px;
+}
+
+textarea {
+    font-size: 16px;
+}
+
+.card12-content input {
+    width: 100px;
+    height: 25px;
+}
+
+.card12-content input[text] {
+    width: 120px;
+}
+
+.card12-content button {
+    width: 80px;
+    padding: 2px;
+    text-align: center;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.card13-content {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.card13-content p {
+    background-color: #2d2d74;
+    width: 100px;
+    height: 20px;
+    color: white;
+}
+
+.card13-content input {
+    width: 110px;
+    height: 25px;
+    font-size: 17px;
+}
+
+.card13-content select {
+    width: 110px;
+    height: 30px;
+    border: none;
+    text-align: center;
+}
+
+.card13-content button {
+    width: 110px;
+    height: 25px;
+    text-align: center;
+    font-size: 18px;
+    color: white;
+    border: none;
+}
+
+.add-new-boot-btn input {
+    text-align: end;
+    color: white;
+}

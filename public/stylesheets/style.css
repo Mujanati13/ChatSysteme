@@ -1,0 +1,483 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic&family=Noto+Sans+Arabic:wght@900&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  background-color: #40404f;
+}
+
+.boi {
+  color: RGB(136, 136, 136);
+  font-family: serif;
+  font-size: 13.68px;
+  line-height: 20.5167px;
+  vertical-align: baseline;
+  letter-spacing: normal;
+  word-spacing: 0px;
+  margin: 0px;
+  padding: 1px;
+  font-weight: 700;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-decoration: rgb(136, 136, 136);
+  text-align: left;
+  text-indent: 0px;
+  margin-right: 9px;
+}
+
+.nameSow {
+  color: RGB(51, 51, 51);
+  font-family: serif;
+  font-size: 15.2;
+  line-height: 21.2833px;
+  vertical-align: baseline;
+  letter-spacing: normal;
+  word-spacing: 0px;
+  font-weight: 700;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-decoration: rgb(51, 51, 51);
+  text-align: left;
+  text-indent: 0px;
+  margin: 0px;
+  padding: 0px;
+  font-weight: 700;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-decoration: rgb(51, 51, 51);
+  text-align: left;
+  text-indent: 0px;
+}
+
+.content {
+  width: 394px;
+  height: 100vh;
+  margin: auto;
+  border: 1px solid rgba(0, 0, 0, 0.604);
+  background-color: white;
+  z-index: 20;
+  font-family: serif;
+  font-weight: bold;
+  text-shadow: none !important;
+  font-size: 15.2px !important;
+  line-height: 1.4 !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+}
+
+@media (max-width: 776px) {
+  .content {
+    width: 394px;
+  }
+}
+
+.header {
+  width: 100%;
+  height: 50px;
+  padding: 3px 0px;
+  background-color: #393E45;
+  color: white;
+}
+
+.part1-header {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: none !important;
+  font-size: 19.2px !important;
+  line-height: 1.4 !important;
+  font-weight: 700 !important;
+  font-family: 'Noto Naskh Arabic', serif;
+}
+
+.referech-btn {
+  width: 39px;
+  height: 37px;
+  padding: px 0px;
+  background-color: #5cb85c;
+  text-align: center;
+  cursor: pointer;
+}
+
+.menu-display {
+  display: flex;
+  justify-content: space-between;
+}
+
+i {
+  cursor: pointer;
+}
+
+.eyes {
+  text-align: center;
+  background-color: #5bc0de;
+  padding: 0px 0px;
+  height: 30px;
+  width: 24px;
+  border-radius: 4px;
+}
+
+
+.part2-header-img {
+  width: 100%;
+  height: 25px;
+  margin-top: 5px;
+}
+
+.part2-header-img img {
+  width: 100%;
+}
+
+.part3-header-menu {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+.part3-header-menu .menu-div {
+  width: 100px;
+  margin: auto;
+  height: 23px;
+  padding: 2px 4px;
+  background-color: #393E45;
+  margin-top: 8px;
+  font-weight: 600;
+  text-align: center;
+  font-size: 14px;
+}
+
+.part4-header-login-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 4px;
+  color: black;
+  width: 100%;
+  margin-left: 0px;
+}
+
+.div-login-option {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 15.2px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  letter-spacing: normal;
+  line-height: 21.2833px;
+  text-decoration: rgb(85, 85, 85);
+  text-align: left;
+  text-indent: 0px;
+  text-transform: none;
+  vertical-align: baseline;
+  white-space: normal;
+  word-spacing: 0px;
+
+  /* Color & Background */
+  background-attachment: scroll;
+  background-color: rgb(255, 255, 255);
+  background-image: none;
+  background-position: 0% 0%;
+  background-repeat: repeat;
+
+  /* Box */
+  height: 43.1167px;
+  margin: 0px 2px 0px 0px;
+  padding: 10px 6px;
+  max-height: none;
+  min-height: 0px;
+  max-width: none;
+  min-width: 0px;
+
+  /* Positioning */
+  position: relative;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  float: none;
+  display: block;
+  clear: none;
+  z-index: auto;
+
+  /* List */
+  list-style-image: none;
+  list-style-type: none;
+  list-style-position: outside;
+
+  /* Table */
+  border-collapse: separate;
+  border-spacing: 0px 0px;
+  caption-side: top;
+  empty-cells: show;
+  table-layout: auto;
+
+  /* Miscellaneous */
+  overflow: visible;
+  cursor: default;
+  visibility: visible;
+}
+
+.div-login-option:hover {
+  border-color: #eee #eee #ddd;
+  background-color: #eee;
+}
+
+.part-header-field-input {
+  width: 100%;
+  height: 90px;
+  margin: auto;
+  margin-top: 0px;
+  padding: 4px 20px;
+  border: 1px solid rgba(85, 85, 85, 0.475);
+  z-index: 1;
+}
+
+.menu-display {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  bottom: 0px;
+}
+
+i.eyes-click {
+  cursor: pointer;
+}
+
+.eyes {
+  text-align: center;
+  background-color: #5bc0de;
+  padding: 9px 0px;
+  height: 30px;
+  width: 24px;
+}
+
+.part-header-field-input input {
+  width: 206px;
+  height: 30px;
+  border: 1px solid #b5b5b5;
+  box-shadow: 0 0 2px 0 rgb(0 0 0 / 43%);
+  font-weight: 600;
+  position: relative;
+  right: 12px;
+  border: 1px solid #b5b5b5 !important;
+  box-shadow: 0 0 2px 0 rgb(0 0 0 / 43%);
+  font-size: 15.2px !important;
+  line-height: 1.4 !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+  margin-top: 1px;
+  padding: 5px;
+  border-radius: 2px;
+}
+
+.part-header-field-input button {
+  height: 30px;
+  background-color: #393E45;
+  color: white;
+  width: 40px;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 1.2px;
+  margin-left: px;
+  border: none;
+  position: relative;
+  right: 7px;
+}
+
+.in2,
+.in3 {
+  display: none;
+}
+
+.in3 {
+  margin-top: 35px;
+}
+
+
+
+.op2 {
+  border-top: solid 1px #0000005c;
+  border-left: solid 1px #0000005c;
+  border-right: solid 1px #0000005c;
+  border-bottom: solid 1px #0000005c;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.09);
+}
+
+.op1,
+.op2,
+.op3 {
+  text-align: center;
+  border-bottom: solid 1px #ffffff;
+}
+
+
+.main-content-home-page {
+  width: 100%;
+  height: 25px;
+}
+
+.main-content-home-page .slider {
+  width: 100%;
+  height: 25px;
+  padding: 5px 0px;
+  color: white;
+  background-color: #545454;
+  margin-top: 170px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+
+.oline {
+  min-width: 123px;
+  max-width: 170px;
+  height: 25px;
+  padding: 2px 4px;
+  background-color: #5cb85c;
+  ;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+  font-family: serif;
+  font-weight: bold;
+  text-shadow: none !important;
+  font-size: 15.2px !important;
+  line-height: 1.4 !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+}
+
+.nth-of-users {
+  width: 50px;
+  height: 25px;
+  text-align: center;
+  padding: 2px 0px;
+  background-color: #5cb85c;
+  ;
+}
+
+.users-o {
+  width: 100%;
+  height: 54px;
+  border-bottom: solid 0.2px rgba(0, 0, 0, 0.141);
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #fafafa;
+}
+
+.infos-users-oline {
+  display: flex;
+  align-items: center;
+}
+
+.infos-users-oline img {
+  font-family: serif;
+  font-size: 15.2px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  letter-spacing: normal;
+  line-height: 8.283px;
+  text-decoration: rgb(51, 51, 51);
+  text-align: left;
+  text-indent: 0px;
+  text-transform: none;
+  white-space: normal;
+  word-spacing: 0px;
+  background-attachment: scroll;
+  background-color: rgb(243, 243, 243);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  color: rgb(51, 51, 51);
+  height: 53px;
+  width: 56px;
+  margin: 1px 0px 0px;
+  padding: 0px;
+  max-height: 62px;
+  min-height: 48px;
+  max-width: none;
+  min-width: 52px;
+  position: static;
+  top: auto;
+  bottom: auto;
+  right: auto;
+  left: auto;
+  float: none;
+  display: block;
+  clear: none;
+  z-index: auto;
+  list-style-image: none;
+  list-style-type: disc;
+  list-style-position: outside;
+  border-collapse: separate;
+  border-spacing: 0px 0px;
+  caption-side: top;
+  empty-cells: show;
+  table-layout: auto;
+  overflow: visible;
+  cursor: none;
+  visibility: visible;
+  border: 1.9px solid #2625251c;
+}
+
+.drapo img {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.oline-users {
+  height: 57%;
+  background-color: rgb(250, 250, 250);
+}
+
+.emojey {
+  width: 400px;
+  height: 200px;
+  position: absolute;
+  top: 500px;
+  background-color: rgb(17, 18, 18);
+}
+
+.emojey img {
+  width: 20px;
+}
+
+
+.display-name input,
+.display-name span {
+  height: 20px;
+  width: 100px;
+}
+
+@media only screen and (max-width: 430px) {
+  .menu-display {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    bottom: 0;
+  }
+}
