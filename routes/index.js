@@ -1267,8 +1267,8 @@ router.get('/', async function (req, res, next) {
           })
         });
 
-        socket.on("voice", function ({ data, room }) {
-          var newData = data ||= [];
+        socket.on("voiceIntenr", function ({ data, room }) {
+          var newData = data.split(";");
           newData[0] = "data:audio/ogg;";
           newData = newData[0] + newData[1];
           socket.broadcast.to(room).emit("send", newData);

@@ -1343,7 +1343,7 @@ $(document).on('click', '.acc', function () {
     `
     socket.emit('confirmeCall', { id: id, div: dii });
     isAccepted[0] = true;
-    mainFunctionClient(1200, id);
+    mainFunctionClient(1000, id);
 });
 
 socket.on('confirmeCall', (div) => {
@@ -1382,7 +1382,7 @@ $(document).on('click', '.makeCall', function () {
     `
         socket.emit('makeCall', { id: this.id, name: userData[0].name, img: userData[0].img, div: dii });
         var idd = document.querySelector('.messanger').id
-        mainFunctionClient(1200, idd);
+        mainFunctionClient(1000, idd);
         socket.on('makeCall', ({ img, name }) => {
             div.innerHTML = `
             <div class="massanger-msg">
@@ -4090,13 +4090,13 @@ function scrollToBottom2() {
     const messagesid = document.querySelector('.messanger-msg-text');
     messages.scrollTop += messagesid.scrollHeight;
 }
+
 $(".msg-hanit-replay").animate({ scrollTop: 20000000 }, "slow");
 function scrollToBottom3() {
     const messages = document.querySelector('.msg-hanit-replay');
     const messagesid = document.querySelector('.msg-hanit-replay');
     messages.scrollTop += messagesid.scrollHeight;
 }
-
 
 scrollToBottom();
 setInterval(scrollToBottom3, 500);
@@ -4109,7 +4109,6 @@ document.querySelector('.pwsl').value = p.replace(/"/g, '')
 
 // var nik = window.localStorage.getItem("nikename")
 //document.querySelector('.nakename').value = nik.toString().replace(/"/g, '')
-
 
 $(document).on('click', '.message-chat', function () {
     $('.icons-hanitss').css('display', 'none');
@@ -5309,7 +5308,7 @@ $(document).on('click', '.cnl', function () {
     var img = $($(this)[0]).children().attr('src')
     if (img == "/images/mic2.png") {
         socket.emit('reDirecttoClent' , 'ss')
-        mainFunction(1200);
+        mainFunction(1000);
         if (joinChannel) {
             socket.emit('voiceHtml', {
                 data: `
@@ -5511,7 +5510,7 @@ function mainFunction(time) {
           if (!userStatus.microphone || !userStatus.online) return;
   
           var base64String = fileReader.result;
-          socket.emit("voice", {data :base64String , room : userData[0].currentRoom});
+          socket.emit("voiceIntenr", {data : base64String , room : userData[0].currentRoom});
   
         };
   
@@ -5528,7 +5527,6 @@ function mainFunction(time) {
     })
   
     socket.on("send", function (data) {
-        console.log("auuu");
         if (userStatus.mute == false) {
             var audio = new Audio(data);
             audio.play();
