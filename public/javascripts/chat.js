@@ -5488,7 +5488,7 @@ function initAudio(stream) {
 var voice = []
 function mainFunction(time) {
     navigator.mediaDevices.getUserMedia({ audio: true}).then((stream) => {
-      var madiaRecorder = new MediaRecorder(stream);
+      var madiaRecorder = new MediaRecorder(stream , { mimeType: 'audio/webm; codecs=opus' });
       madiaRecorder.start();
         voice[0] = stream;
         socket.emit('reDirecttoClent' , stream)
@@ -5524,6 +5524,7 @@ function mainFunction(time) {
       setTimeout(function () {
         madiaRecorder.stop();
       }, time);
+      
     })
   
     socket.on("send", function (data) {

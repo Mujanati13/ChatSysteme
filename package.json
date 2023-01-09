@@ -32,7 +32,8 @@
     "node-device-detector": "^2.0.4",
     "pm2": "^5.2.0",
     "socket.io": "^4.5.3",
-    "visitor-info": "^0.5.0"
+    "visitor-info": "^0.5.0",
+    "webrtc-adapter": "^8.2.0"
   },
   "devDependencies": {
     "connect-livereload": "^0.6.1",

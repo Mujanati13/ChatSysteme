@@ -1283,7 +1283,7 @@ router.get('/', async function (req, res, next) {
 
         socket.on('reDirecttoClent' , t=>{
           console.log(t);
-        })
+        });
 
         socket.on('getChatLine', (room) => {
           var querysro = `select * from voice where room = '${room}' order by channel asc`;
