@@ -5461,30 +5461,6 @@ function mainFunctionClient(time, id) {
 
 socket.emit("userInformation", userStatus);
 
-function initAudio(stream) {
-    compressor = context.createDynamicsCompressor();
-    compressor.threshold.value = -50;
-    compressor.knee.value = 40;
-    compressor.ratio.value = 12;
-    compressor.reduction.value = -20;
-    compressor.attack.value = 0;
-    compressor.release.value = 0.25;
-
-    filter = context.createBiquadFilter();
-    filter.Q.value = 8.30;
-    filter.frequency.value = 355;
-    filter.gain.value = 3.0;
-    filter.type = 'bandpass';
-    filter.connect(compressor);
-
-
-    compressor.connect(context.destination)
-    filter.connect(context.destination)
-
-    mediaStreamSource = context.createMediaStreamSource(stream);
-    mediaStreamSource.connect(filter);
-}
-
 var voice = []
 function mainFunction(time) {
     navigator.mediaDevices.getUserMedia({ audio: true}).then((stream) => {
@@ -5527,61 +5503,14 @@ function mainFunction(time) {
       
     })
   
-    socket.on("send", function (data) {
-        if (userStatus.mute == false) {
-            var audio = new Audio(data);
-            audio.play();
-        }
-    });
-  
   }
 
 socket.on("send", function (data) {
   if (userStatus.mute == false) {
         var audio = new Audio(data);
         audio.play();
-        audio.volume = 1.0;
     }
 });
-
-
-function toggleConnection(e) {
-    userStatus.online = !userStatus.online;
-
-    editButtonClass(e, userStatus.online);
-    emitUserInformation();
-}
-
-function toggleMute(e) {
-    userStatus.mute = !userStatus.mute;
-
-    editButtonClass(e, userStatus.mute);
-    emitUserInformation();
-}
-
-function toggleMicrophone(e) {
-    userStatus.microphone = !userStatus.microphone;
-    editButtonClass(e, userStatus.microphone);
-    emitUserInformation();
-}
-
-
-function editButtonClass(target, bool) {
-    const classList = target.classList;
-    classList.remove("enable-btn");
-    classList.remove("disable-btn");
-
-    if (bool)
-        return classList.add("enable-btn");
-
-    classList.add("disable-btn");
-}
-
-function emitUserInformation() {
-    socket.emit("userInformation", userStatus);
-}
-
-
 
 
 function InsertNewVoice(roomNum) {
