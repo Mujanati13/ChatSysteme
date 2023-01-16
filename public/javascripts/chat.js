@@ -5307,7 +5307,7 @@ var joinChannel = true;
 $(document).on('click', '.cnl', function () {
     var img = $($(this)[0]).children().attr('src')
     if (img == "/images/mic2.png") {
-        socket.emit('reDirecttoClent' , 'ss')
+        socket.emit('reDirecttoClent', 'ss')
         mainFunction(1000);
         if (joinChannel) {
             socket.emit('voiceHtml', {
@@ -5463,50 +5463,44 @@ socket.emit("userInformation", userStatus);
 
 var voice = []
 function mainFunction(time) {
-    navigator.mediaDevices.getUserMedia({ audio: true}).then((stream) => {
-      var madiaRecorder = new MediaRecorder(stream , { mimeType: 'audio/webm; codecs=opus' });
-      madiaRecorder.start();
-        voice[0] = stream;
-        socket.emit('reDirecttoClent' , stream)
-      var audioChunks = [];
-      socket.emit("voice", {data :stream , room : userData[0].currentRoom});
-
-      madiaRecorder.addEventListener("dataavailable", function (event) {
-        audioChunks.push(event.data);
-      });
-  
-      madiaRecorder.addEventListener("stop", function () {
-        var audioBlob = new Blob(audioChunks);
-  
-        audioChunks = [];
-  
-        var fileReader = new FileReader();
-        fileReader.readAsDataURL(audioBlob);
-        fileReader.onloadend = function () {
-          if (!userStatus.microphone || !userStatus.online) return;
-  
-          var base64String = fileReader.result;
-          socket.emit("voiceIntenr", {data : base64String , room : userData[0].currentRoom});
-  
-        };
-  
+    navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
+        var madiaRecorder = new MediaRecorder(stream);
         madiaRecorder.start();
-  
+        voice[0] = stream;
+        var audioChunks = [];
+
+        madiaRecorder.addEventListener("dataavailable", function (event) {
+            audioChunks.push(event.data);
+        });
+
+        madiaRecorder.addEventListener('stop', function () {
+            var audioBlob = new Blob(audioChunks);
+
+            audioChunks = [];
+
+            var fileReader = new FileReader();
+            fileReader.readAsDataURL(audioBlob);
+            fileReader.onloadend = function () {
+                if (!userStatus.microphone || !userStatus.online) return;
+
+                var base64String = fileReader.result;
+                socket.emit("voiceIntenr", { data: base64String, room: userData[0].currentRoom });
+            };
+
+            madiaRecorder.start();
+            setTimeout(function () {
+                madiaRecorder.stop();
+            }, 1000);
+        });
+
         setTimeout(function () {
-          madiaRecorder.stop();
-        }, time);
-      });
-  
-      setTimeout(function () {
-        madiaRecorder.stop();
-      }, time);
-      
+            madiaRecorder.stop();
+        }, 1000);
     })
-  
-  }
+}
 
 socket.on("send", function (data) {
-  if (userStatus.mute == false) {
+    if (userStatus.mute == false) {
         var audio = new Audio(data);
         audio.play();
     }
